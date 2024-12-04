@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" th:href="@{css/main.css}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<h3>Список групп</h3>
+<div id="groups-container">
+
+</div>
+<div id="modalWindow" class="modal">
+    <form id="addForm">
+        <label>
+            Имя студента
+            <input onchange="concealError()" id="studentName" type="text">
+            <span class="error material-icons" id="studentError">cancel</span>
+            <span class="error">Введите имя в формате: Петр Петров Петрович</span>
+        </label>
+        <button type="button" onclick="createReport(this.id)">Добавить студента</button>
+    </form>
+</div>
+<div id="modalWindowGroup" class="modalGroup">
+    <form id="addFormGroup">
+        <label>
+            Название группы
+            <input onchange="concealErrorGroup()" id="groupName" type="text">
+            <span class="error material-icons" id="groupError">cancel</span>
+            <span class="error">Введите имя в формате: НГС-22 или НБ-22-1</span>
+        </label>
+        <button type="button" onclick="createGroup()">Добавить группу</button>
+    </form>
+</div>
+</body>
+<script th:src="@{js/main.js}"></script>
+</html>

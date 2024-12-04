@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" th:href="@{css/report.css}">
+    <link rel="stylesheet" href="../css/report.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<form id="student-form">
+    <div id="student">Данные о студенте
+        <div class="form-group">
+            <label>ФИО:</label>
+            <input id = "stuFio" type="text">
+        </div>
+        <div class="form-group">
+            <label>Адрес регистрации:</label>
+            <input id = "stuRegAddress" type="text">
+        </div>
+        <div class="form-group">
+            <label>Номер телефона:</label>
+            <input id = "stuPhone" type="text">
+        </div>
+        <div class="form-group">
+            <label>Электронная почта:</label>
+            <input id="stuEmail" type="email">
+        </div>
+        <div class="form-group">
+            <label>Комментарий:</label>
+            <textarea id="stuComment" name="message" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Комментарий от студента:</label>
+            <textarea  id= "stuCommentFromStudent" type="text"></textarea>
+        </div>
+    </div>
+    <div id="organization">Данные об организации
+        <div class="form-group">
+            <label>Организация:</label>
+            <select id= "orgName" type="text" onchange="organizationChanged(this.value)">
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Адрес организации:</label>
+            <input id= "orgAddress" type="text" disabled>
+        </div>
+        <div class="form-group">
+            <label>Номер телефона:</label>
+            <input id= "orgPhone" type="text" disabled>
+        </div>
+        <div class="form-group">
+            <label>Почта:</label>
+            <input id= "orgEmail" type="text" disabled>
+        </div>
+        <div class="form-group">
+            <label>Контактное лицо:</label>
+            <input id= "orgContactName" type="text" disabled>
+        </div>
+        <div class="form-group">
+            <label>Требования:</label>
+            <input id= "orgRequirements" type="text" disabled>
+        </div>
+    </div>
+
+    <div id="practice">Данные о практике
+        <div class="form-group">
+            <label>Оплачиваемая?:</label>
+            <select id="prcIsPayed">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Актуальность:</label>
+            <input id= "prcRelevance" type="text">
+        </div>
+        <div class="form-group">
+            <label>Собранные материалы:</label>
+            <input id= "prcMaterial" type="text">
+        </div>
+        <div class="form-group">
+            <label>Описание:</label>
+            <input id= "prcDescription" type="text">
+        </div>
+        <div class="form-group">
+            <label>Директор:</label>
+            <input id= "prcDirector" type="text">
+        </div>
+        <div class="form-group">
+            <label>Начало практики:</label>
+            <input id= "prcStarting" type="date">
+        </div>
+        <div class="form-group">
+            <label>Конец практики:</label>
+            <input id= "prcEnding" type="date">
+        </div>
+        <div class="form-group">
+            <label>Возможность трудоустройства:</label>
+            <select id="prcFutureWork">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Следующий год:</label>
+            <select id="prcNextYear">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Отчет сдан:</label>
+            <select id="prcReportPassed">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Должность:</label>
+            <input id= "prcPosition" type="text">
+        </div>
+        <div class="form-group">
+            <label>Есть работа?:</label>
+            <input id= "prcWork" type="text">
+        </div>
+    </div>
+    <button onclick="submitStudent()" type="button" id="submitBtn">Отправить</button>
+</form>
+<div class="modal" id="add-orgmodal">
+    <div class="modal-content" id="orgmodal">Данные об организации
+        <form>
+            <div class="form-group">
+                <label>Название организации:</label>
+                <input id= "add-orgName" type="text">
+            </div>
+            <div class="form-group">
+                <label>Адрес организации:</label>
+                <input id= "add-orgAddress" type="text">
+            </div>
+            <div class="form-group">
+                <label>Номер телефона:</label>
+                <input id= "add-orgPhone" type="text">
+            </div>
+            <div class="form-group">
+                <label>Почта:</label>
+                <input id= "add-orgEmail" type="text">
+            </div>
+            <div class="form-group">
+                <label>Контактное лицо:</label>
+                <input id= "add-orgContactName" type="text">
+            </div>
+            <div class="form-group">
+                <label>Требования:</label>
+                <input id= "add-orgRequirements" type="text">
+            </div>
+            <button onclick="addOrg(this.parentElement)" type="button" id="addBtn">Отправить</button>
+        </form>
+    </div>
+</div>
+</body>
+<script th:src="@{js/report.js}"></script>
+<script src="../js/report.js"></script>
+</html>
